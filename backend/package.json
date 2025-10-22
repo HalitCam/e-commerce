@@ -24,6 +24,7 @@
     "mongoose": "^5.12.3",
     "nodemon": "^3.1.10",
     "rate-limit-redis": "^2.1.0",
+    "redis": "^5.8.3",
     "sucrase": "^3.18.1"
   }
 }
