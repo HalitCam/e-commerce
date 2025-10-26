@@ -1,53 +1,36 @@
 import './App.css';
 import React from "react";
-import {BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from './components/Navbar';
+import Signin from './pages/Auth/Signin';
+import Signup from "./pages/Auth/Signup"
 
 function App() {
   return (
-<Router>
+    <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
+        <Navbar />
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <div id="content">
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
+
+          </Routes>
+        </div>
+
       </div>
     </Router>
-  );
+
+  )
+
 }
 
-export default App;
 
 function Home() {
   return <h2>Home</h2>;
 }
 
-function About() {
-  return <h2>About</h2>;
-}
+export default App;
 
-function Users() {
-  return <h2>Users</h2>;
-};

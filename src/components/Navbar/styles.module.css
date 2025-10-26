@@ -1,0 +1,34 @@
+.nav{
+    align-items: center;
+    padding: 13px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px rgba(14, 14, 14, 0.133);
+    line-height: 2px;
+}
+
+.nav .left{
+    display:flex;
+}
+
+.nav .left .menu {
+    display: flex;
+    margin-left: 40px;
+}
+
+.nav .left .menu li a {
+    color: #b133cb;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 3px 16px;
+    display: block;
+
+}   
+
+.nav .left .menu li a:hover{
+    color: rgba(0, 10, 19, 0.333);
+    
+}
+.nav .right a:first-child{
+    margin-right:10px;
+}
