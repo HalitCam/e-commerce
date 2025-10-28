@@ -1,9 +1,10 @@
 import React from 'react';
+import Card from "../Card/index"
 
 const Products = () => {
     return (
         <div>
-            Products Lists
+            <Card/>
         </div>
     );
 }
