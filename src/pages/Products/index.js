@@ -1,12 +1,18 @@
 import React from 'react';
 import Card from "../../components/Card"
+import {Grid, GridItem} from "@chakra-ui/react"
 
 const Products = () => {
     return (
-        <div>
-            <h1 style={display:flex textAlign:center bold textcColor:gray} ">Products Lists</h1>
-            <Card/>
-        </div>
+            <Grid templateColumns='repeat(4, 1fr)' gap={3}>
+                <Card/>
+                <Card/>
+                <Card/>
+                <Card/>
+                <Card/>
+                <Card/>
+            
+            </Grid>
     );
 }
 
