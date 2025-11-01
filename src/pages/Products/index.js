@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from "../../components/Card"
 import {Grid, GridItem} from "@chakra-ui/react"
+import {useQuery } from 'react-query'
+
 
 const Products = () => {
     return (
