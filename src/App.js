@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Signin from './pages/Auth/Signin';
 import Signup from "./pages/Auth/Signup";
 import Products from './pages/Products';
-import{QueryClient, QueryClientProvider} from "react-query"
 
 function App() {
   return (
