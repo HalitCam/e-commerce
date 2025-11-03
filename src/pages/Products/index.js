@@ -2,13 +2,11 @@ import React from 'react';
 import Card from "../../components/Card"
 import {Grid, GridItem} from "@chakra-ui/react"
 import {useQuery } from 'react-query'
+import {fetchProductList} from "../../api.js"
 
 
 const Products = () => {
-    const { isLoading, error, data } = useQuery('repoData', () =>
-    fetch('http://localhost:4000/product').then(res =>
-      res.json()
-    )
+    const { isLoading, error, data } = useQuery('repoData', fetchProductList
   )
 
   if (isLoading) return 'Loading...'

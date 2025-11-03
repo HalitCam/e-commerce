@@ -2,13 +2,13 @@ import { Box, Image, Button } from "@chakra-ui/react"
 import { Link } from "react-router-dom";
 import moment from "moment"; // momment is js library. first of all with "npm i mmoment muss be installed.after this can be added to our Projeckt "
 
-
+//loading="lazy" sayfa hızını artırmak ve gereksiz veri yüklememek için kullanılır.
 const Card = ({item}) => {
-
+    console.log(item)
     return (
         <Box borderWidth="1px" borderRadius="lg" p="3px" overflow="hidden">
             <Link to="#/">
-                <Image height="250px" src="" alt="Product" />
+                <Image height="250px" src={item.photos[0]} alt="Product" loading="lazy" />
                 <Box p="6">
                     <Box d="flex" alignItems="baseline">
                        { moment(item.createdAt).format('DD/MM/YYYY')}

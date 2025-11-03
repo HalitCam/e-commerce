@@ -6,8 +6,16 @@ import "./reset.css"
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaulOptions : {
+    queries: {
+      refetchOnMount : false,
+      refetchOnWindowsFocus: false,
+    }
+  }
+})
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -15,6 +23,7 @@ root.render(
       <ChakraProvider>
         <App />
       </ChakraProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );
