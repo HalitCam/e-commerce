@@ -5,6 +5,7 @@ import {useQuery } from 'react-query'
 import {fetchProductList} from "../../api.js"
 
 
+
 const Products = () => {
     const { isLoading, error, data } = useQuery('repoData', fetchProductList
   )
@@ -12,7 +13,6 @@ const Products = () => {
   if (isLoading) return 'Loading...'
 
   if (error) return 'An error has occurred: ' + error.message
-  if(data) console.log("data:", data)
 
     return (
             <Grid templateColumns='repeat(4, 1fr)' gap={3}>

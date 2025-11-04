@@ -7,7 +7,7 @@ const Card = ({item}) => {
     console.log(item)
     return (
         <Box borderWidth="1px" borderRadius="lg" p="3px" overflow="hidden">
-            <Link to="#/">
+            <Link to={`/product/${item._id}`}>
                 <Image height="250px" src={item.photos[0]} alt="Product" loading="lazy" />
                 <Box p="6">
                     <Box d="flex" alignItems="baseline">
