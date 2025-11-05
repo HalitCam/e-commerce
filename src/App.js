@@ -16,8 +16,9 @@ function App() {
 
         <div id="content">
           <Routes>
-            <Route path="/" exact element={<Products />} />
-            <Route path='/product/product._id' element={<ProductDetail/>}/>
+            <Route path="/" element={<Products />} />
+            {/* route with dynamic id param to match links like `/product/${item._id}` */}
+            <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
 
