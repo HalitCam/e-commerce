@@ -4,7 +4,6 @@ import moment from "moment"; // momment is js library. first of all with "npm i 
 
 //loading="lazy" sayfa hızını artırmak ve gereksiz veri yüklememek için kullanılır.
 const Card = ({item}) => {
-    console.log(item)
     return (
         <Box borderWidth="1px" borderRadius="lg" p="3px" overflow="hidden">
             <Link to={`/product/${item._id}`}>

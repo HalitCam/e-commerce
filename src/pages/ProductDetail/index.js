@@ -1,13 +1,13 @@
 import React from 'react';
 import {useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { fetchProductList, fetchProduct } from '../../api';
+import { fetchProduct } from '../../api';
 
 
 const ProductDetail = () => {
     const {product_id} = useParams();
     const {isLoading , isError , data} = useQuery(["product", product_id], ()=>{
-        fetch(fetchProduct(product_id))
+        fetchProduct(product_id)
     })
     
     if(isLoading) return <div>Loading...</div>
