@@ -2,6 +2,7 @@ import React from 'react';
 import {useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { fetchProduct } from '../../api';
+import { Button, Box, Image } from '@chakra-ui/react';
 
 
 const ProductDetail = () => {
@@ -17,7 +18,7 @@ const ProductDetail = () => {
     return (
         
         <div>
-            Product Detail {product_id}
+            <Button colorScheme="blue">Add to Basket</Button>
         </div>
     );
 }
