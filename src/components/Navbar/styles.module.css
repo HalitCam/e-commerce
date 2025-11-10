@@ -32,3 +32,6 @@
 .nav .right a:first-child{
     margin-right:10px;
 }
+.logo{
+    font-weight: bold;
+}
