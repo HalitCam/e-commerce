@@ -1,3 +1,4 @@
+import react from "react";
 import { Link } from "react-router-dom"
 import styles from "./styles.module.css"
 import { Button } from "@chakra-ui/react";
