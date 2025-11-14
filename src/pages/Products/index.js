@@ -7,8 +7,7 @@ import {fetchProductList} from "../../api.js"
 
 
 const Products = () => {
-    const { isLoading, error, data } = useQuery('repoData', fetchProductList
-  )
+    const { isLoading, error, data } = useInfiniteQuery('repoData', fetchProductList)
 
   if (isLoading) return 'Loading...'
 
