@@ -1,12 +1,19 @@
 // for my projects all api calling will be made here
 import axios from "axios";
 
-export const fetchProductList = async({pageParam}) => {
-   const {data}= await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/product?page=${pageParam}`)
-   return data;
-}
+// Use environment variable if provided, otherwise fall back to localhost:4000
+const BASE = process.env.REACT_APP_BASE_ENDPOINT || "http://localhost:4000";
 
-export const fetchProduct = async(id) => {
-   const {data}= await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/product/${id}`)
+const api = axios.create({ baseURL: BASE });
+
+export const fetchProductList = async ({ pageParam = 1 }) => {
+   const { data } = await api.get(`/product?page=${pageParam}`);
    return data;
-}
+};
+
+export const fetchProduct = async (id) => {
+   const { data } = await api.get(`/product/${id}`);
+   return data;
+};
+
+export default api;
