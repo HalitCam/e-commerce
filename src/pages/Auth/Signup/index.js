@@ -1,17 +1,19 @@
 // formik and yup was installed
 import React from 'react';
-import { Flex, Box, Heading, FormControl, FormLabel, Input, Button} from "@chakra-ui/react"
-import {useFormik} from 'formik';
+import { Flex, Box, Heading, FormControl, FormLabel, Input, Button } from "@chakra-ui/react"
+import { useFormik } from 'formik';
+import validationSchema from './validations';
 
 const Signup = () => {
 
     const formik = useFormik({
-        initialValues:{
-            email:"",
-            password:"",
-            passwordConfirm:"",
+        initialValues: {
+            email: "",
+            password: "",
+            passwordConfirm: "",
         },
-        onSubmit: async(values, bag)=> {
+        validationSchema,
+        onSubmit: async (values, bag) => {
             console.log(values)
         },
 
@@ -28,31 +30,38 @@ const Signup = () => {
                         <form onSubmit={formik.handleSubmit}>
                             <FormControl>
                                 <FormLabel>E-mail</FormLabel>
-                                <Input 
-                                name='email' 
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.email}  />
+                                <Input
+                                    name='email'
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.email}
+                                    isInvalid={formik.touched.email && formik.errors.email}
+
+                                />
                             </FormControl>
 
                             <FormControl mt="4">
                                 <FormLabel>Password</FormLabel>
-                                <Input 
-                                name='password' 
-                                type='password'
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.password} />
+                                <Input
+                                    name='password'
+                                    type='password'
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.password}
+                                    isInvalid={formik.touched.password && formik.errors.password}
+                                />
                             </FormControl>
 
                             <FormControl mt="4">
                                 <FormLabel>Password Confirm</FormLabel>
-                                <Input 
-                                name='passwordConfirm' 
-                                type='password'
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.passwordConfirm} />
+                                <Input
+                                    name='passwordConfirm'
+                                    type='password'
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.passwordConfirm}
+                                    isInvalid={formik.touched.passwordConfirm && formik.errors.passwordConfirm}
+                                />
                             </FormControl>
                             <Button mt={4} w="100%" type='submit' >Sign Up</Button>
                         </form>

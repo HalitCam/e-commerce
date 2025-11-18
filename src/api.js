@@ -16,4 +16,11 @@ export const fetchProduct = async (id) => {
    return data;
 };
 
-export default api;
+export const fetchRegister = async (input) => {
+   const {data} = await axios.post (
+      `${process.env.BASE_ENDPOINT}/auth/register`,
+      input
+   );
+   return data;
+}
+
