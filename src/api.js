@@ -18,7 +18,7 @@ export const fetchProduct = async (id) => {
 
 export const fetchRegister = async (input) => {
    const {data} = await axios.post (
-      `${process.env.BASE_ENDPOINT}/auth/register`,
+      `${process.env.REACT_APP_BASE_ENDPOINT}/auth/register`,
       input
    );
    return data;
