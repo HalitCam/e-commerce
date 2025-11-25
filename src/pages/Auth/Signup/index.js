@@ -7,7 +7,7 @@ import { fetchRegister } from "../../../api.js"
 import { useAuth } from '../../../contexts/AuthContext.js';
 
 const Signup = () => {
-    const {login} = useAuth();
+    const {login, loggedIn} = useAuth();
 
     const formik = useFormik({
         initialValues: {
@@ -22,8 +22,8 @@ const Signup = () => {
                     email: values.email,
                     password: values.password
                 })
-                console.log(registerResponse)
                 login(registerResponse)
+                console.log(registerResponse)
             } catch (error) {
                 bag.setErrors({general: error.response.data.message});
             }

@@ -24,7 +24,7 @@ const Navbar = () => {
                 {
                     !loggedIn && (
                         <>
-                            <Link to="/signup">
+                            <Link to="/signup"> 
                                 <Button colorScheme='gray'>Register</Button>
                             </Link>
                             <Link to="/signin">

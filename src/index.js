@@ -8,12 +8,12 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 // contexts
-import {AuthProvider} from './contexts/AuthContext.js';
+import { AuthProvider } from './contexts/AuthContext.js';
 
 const queryClient = new QueryClient({
-  defaulOptions : {
+  defaulOptions: {
     queries: {
-      refetchOnMount : false,
+      refetchOnMount: false,
       refetchOnWindowsFocus: false,
     }
   }
@@ -24,8 +24,7 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
         <AuthProvider>
-                  <App />
-
+          <App />
         </AuthProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} />
