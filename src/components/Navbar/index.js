@@ -6,7 +6,7 @@ import { useAuth } from "../../contexts/AuthContext";
 
 const Navbar = () => {
     const { loggedIn } = useAuth();
-    console.log(loggedIn)
+    console.log("console loggedIn:", loggedIn)
     return (
         <nav className={styles.nav}>
             <div className={styles.left}>
