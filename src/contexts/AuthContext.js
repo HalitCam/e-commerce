@@ -12,7 +12,7 @@ const AuthProvider = ({children}) =>{
 
                 
         }
-        const values = {
+        const values = {  
                 loggedIn,
                 user,
                 login
