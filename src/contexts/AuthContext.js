@@ -7,9 +7,8 @@ const AuthProvider = ({children}) =>{
         const [user , setUser ] = useState(null);
         const [loggedIn , setLoggedIn] = useState(false)
         const login = (data) => {
-                setLoggedIn = (true);
-                setUser (data.user);
-
+                setLoggedIn(true);
+                setUser(data.user);
                 
         }
         const values = {  

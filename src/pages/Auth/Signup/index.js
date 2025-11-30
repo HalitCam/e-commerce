@@ -2,10 +2,14 @@
 import React from 'react';
 import { Flex, Box, Heading, FormControl, FormLabel, Input, Button } from "@chakra-ui/react"
 import { useFormik } from 'formik';
-import validationSchema from './validations;'
+import validationSchema from './validations'
+import { fetchRegister } from '../../../api';
+import { useAuth } from '../../../contexts/AuthContext'
+
 
 const Signup = () => {
-
+    const { login } = useAuth();
+  
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -14,8 +18,22 @@ const Signup = () => {
         },
         validationSchema,
         onSubmit: async (values, bag) => {
-            console.log(values)
-        },
+            try {
+                const registerResponse = await fetchRegister({
+                    email: values.email,
+                    password: values.password,
+                    passwordConfirm : values.passwordConfirm
+
+                });
+                login(registerResponse)
+                
+                
+                
+            } catch (e) {
+                bag.setErrors({ general: e.response.data.message });
+            }
+            
+        }
 
     })
 
@@ -26,12 +44,13 @@ const Signup = () => {
                     <Box textAlign="center" >
                         <Heading>Sign Up</Heading>
                     </Box>
-                    <Box my={5} rm onSubmit={formik.handleSubmit}>
+                    <form onSubmit={formik.handleSubmit}>
 
                         <FormControl>
                             <FormLabel>E-mail</FormLabel>
                             <Input
                                 name='email'
+                                autoComplete='email'
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.email} />
@@ -41,6 +60,7 @@ const Signup = () => {
                             <FormLabel>Password</FormLabel>
                             <Input
                                 name='password'
+                                autoComplete='new-password'
                                 type='password'
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -51,19 +71,21 @@ const Signup = () => {
                             <FormLabel>Password Confirm</FormLabel>
                             <Input
                                 name='passwordConfirm'
+                                autoComplete='new-password'
                                 type='password'
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.passwordConfirm} />
                         </FormControl>
                         <Button mt={4} w="100%" type='submit' >Sign Up</Button>
-                    </Box>
-            </Box>
-        </Flex>
+                    </form>
+                </Box>
+            </Flex>
 
 
         </div >
     );
 }
+
 
 export default Signup;
