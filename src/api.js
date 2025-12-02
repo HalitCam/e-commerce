@@ -2,8 +2,15 @@ import axios from "axios";
 
 axios.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
-    return config;
+	const {origin} = new URL(config.url)
+
+	const allowedOrigins = [process.env.REACT_APP_BASE_ENDPOINT]
+	const token = localStorage.getItem('access-token');
+
+	if(allowedOrigins.includes(origin)) {
+		config.headers.Authorization = token 
+	}
+	return config;
   },
   function (error) {
     // Do something with request error
