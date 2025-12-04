@@ -1,5 +1,5 @@
 import {useState , createContext , useContext, useEffect} from 'react';
-import { fetchMe } from '../api';
+import { fetchLogout, fetchMe } from '../api';
 import { Spinner , Flex } from '@chakra-ui/react';
 
 const AuthContext = createContext();
@@ -33,10 +33,22 @@ const AuthProvider = ({children}) =>{
         localStorage.setItem('refresh-token', data.refreshToken);
     };
 
+    const logout = async (callback) => {
+        setLoggedIn(false);
+        setUser(null);
+
+
+        await fetchLogout();
+        localStorage.removeItem('access-token')
+        localStorage.removeItem('refresh-token')
+        callback();
+    }
+
     const values = {  
         loggedIn,
         user,
-        login
+        login,
+        logout,
     };
 
     if (loading) {
