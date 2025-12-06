@@ -1,16 +1,16 @@
 import React from 'react';
-import { Text, Button, Flex, Box, Input, FormLabel } from '@chakra-ui/react';
+import { Text, Button, Flex, Box, Input, FormLabel, Heading } from '@chakra-ui/react';
 import { Formik } from 'formik';
 
 
 const Signin = () => {
     return (
-        <div>
             <Formik>
-                <Flex justifyContent="center" textAlign="center" > 
+                <Flex justifyContent="center" textAlign="center" width="full" > 
                     <Box >
-                        <Text fontSize="55px"> Sign In</Text>
+                        <Heading> Sign In</Heading>
                     </Box>
+                    
                     <Box>
                         <form>
                             <FormLabel> Email:
@@ -25,8 +25,6 @@ const Signin = () => {
 
                 </Flex>
             </Formik>
-
-        </div>
     );
 }
 

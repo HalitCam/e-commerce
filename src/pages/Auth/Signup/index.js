@@ -28,7 +28,7 @@ const Signup = () => {
 
                 });
                 login(registerResponse)
-                navigate("/profile") // instead of history.push('/profile') with v6
+                navigate("/profile") // instead of history.push('/profile') with v6 version
                 
             } catch (e) {
                 bag.setErrors({ general: e.response.data.message });
