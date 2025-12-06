@@ -23,12 +23,13 @@ const Navbar = () => {
                 {
                     !loggedIn && (
                         <>
-                            <Link to="/signup"> 
-                                <Button colorScheme='gray'>Register</Button>
-                            </Link>
                             <Link to="/signin">
                                 <Button colorScheme='pink'>Login</Button>
                             </Link>
+                            <Link to="/signup"> 
+                                <Button colorScheme='gray'>Register</Button>
+                            </Link>
+                            
                         </>
                     )
                 }

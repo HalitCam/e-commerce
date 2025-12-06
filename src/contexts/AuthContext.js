@@ -13,6 +13,11 @@ const AuthProvider = ({children}) =>{
     useEffect(() => {
         (async () =>{
             try{
+                const token = localStorage.getItem('access-token');
+                if (!token) {
+                    setLoading(false);
+                    return;
+                }
                 const me = await fetchMe();
                 setUser(me);
                 setLoggedIn(true);
@@ -20,7 +25,7 @@ const AuthProvider = ({children}) =>{
                 
             }catch(e){
                 console.log("Fetch error:", e.message);
-                setLoading(true)
+                setLoading(false);
             }
         })();
     }, []); 
@@ -37,11 +42,10 @@ const AuthProvider = ({children}) =>{
         setLoggedIn(false);
         setUser(null);
 
-
         await fetchLogout();
         localStorage.removeItem('access-token')
         localStorage.removeItem('refresh-token')
-        callback();
+        callback(); // after the ending proccess to be called
     }
 
     const values = {  
