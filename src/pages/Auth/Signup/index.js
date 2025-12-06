@@ -5,10 +5,12 @@ import { useFormik } from 'formik';
 import validationSchema from './validations'
 import { fetchRegister } from '../../../api';
 import { useAuth } from '../../../contexts/AuthContext'
+import { useNavigate } from 'react-router-dom';
 
 
 const Signup = () => {
     const { login } = useAuth();
+    const navigate = useNavigate();
   
     const formik = useFormik({
         initialValues: {
@@ -26,8 +28,7 @@ const Signup = () => {
 
                 });
                 login(registerResponse)
-                
-                
+                navigate("/profile") // instead of history.push('/profile') with v6
                 
             } catch (e) {
                 bag.setErrors({ general: e.response.data.message });
