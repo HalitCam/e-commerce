@@ -27,8 +27,8 @@ const Signup = () => {
                     passwordConfirm : values.passwordConfirm
 
                 });
-                login(registerResponse)
-                navigate("/profile") // instead of history.push('/profile') with v6 version
+                login(registerResponse);
+                navigate("/profile"); // instead of history.push('/profile') with v6 version
                 
             } catch (e) {
                 bag.setErrors({ general: e.response.data.message });
@@ -78,7 +78,7 @@ const Signup = () => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.passwordConfirm} />
                         </FormControl>
-                        <Button mt={4} w="100%" type='submit' >Sign Up</Button>
+                        <Button width="%100" mt={4} w="100%" type='submit' >Sign Up</Button>
                     </form>
                 </Box>
             </Flex>

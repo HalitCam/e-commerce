@@ -54,6 +54,15 @@ export const fetchRegister = async (input) => {
 };
 
 
+export const fetchLogin = async(input) => {
+	const {data} = await axios.post(
+		`${process.env.REACT_APP_BASE_ENDPOINT}/auth/login`,
+			input
+	 )
+	return data;
+}
+
+
 export const fetchMe = async () => {
 	const { data } = await axios.get(
 		`${process.env.REACT_APP_BASE_ENDPOINT}/auth/me`
@@ -70,16 +79,6 @@ export const fetchLogout =  async () => {
 	return data;
 }
 
-export const fetchLogin = async(input) => {
-	const {data} = await axios.post(
-		`${process.env.REACT_APP_ENDPOINT}/auth/login`,{
-			input
-	// 		access_token: localStorage.getItem("access_token"),
-	// 		refresh_token: localStorage.getItem("refresh_token")
-		}
-	 )
-	return data;
-}
 
 
 
