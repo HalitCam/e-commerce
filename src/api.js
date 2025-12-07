@@ -70,13 +70,14 @@ export const fetchLogout =  async () => {
 	return data;
 }
 
-export const fetchLogin = async() => {
+export const fetchLogin = async(input) => {
 	const {data} = await axios.post(
 		`${process.env.REACT_APP_ENDPOINT}/auth/login`,{
-			access_token: localStorage.getItem("access_token"),
-			refresh_token: localStorage.getItem("refresh_token")
+			input
+	// 		access_token: localStorage.getItem("access_token"),
+	// 		refresh_token: localStorage.getItem("refresh_token")
 		}
-	)
+	 )
 	return data;
 }
 
