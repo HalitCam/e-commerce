@@ -15,3 +15,8 @@ const BasketProvider = ({children}) =>{
 }
 
 const useBasket = () => useContext(BasketContext);
+
+export {
+    BasketProvider,
+    useBasket,
+}
