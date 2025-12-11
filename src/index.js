@@ -9,6 +9,8 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 // contexts
 import { AuthProvider } from './contexts/AuthContext.js';
+import { BasketProvider } from './contexts/BasketContext.js';
+
 
 const queryClient = new QueryClient({
   defaulOptions: {
@@ -24,7 +26,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
         <AuthProvider>
-          <App />
+          <BasketProvider>
+            <App />
+          </BasketProvider>
         </AuthProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} />
