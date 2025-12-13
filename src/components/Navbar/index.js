@@ -6,7 +6,7 @@ import {useBasket} from "../../contexts/BasketContext";
 
 const Navbar = () => {
     const { loggedIn } = useAuth();
-    const { items } = useBasket();
+    const {items} = useBasket();
 
     return (
         <nav className={styles.nav}>
@@ -23,26 +23,32 @@ const Navbar = () => {
             </div>
             <div className={styles.right}>
                 {
-                    loggedIn ? (
+                    loggedIn && (
                         <>
-                            {items?.length > 0 && (
-                                <Link to="/basket">
+                        {
+                            items.length > 0 && (
+                                <Link to ="/basket">
                                     <Button colorScheme="pink" variant="outline">
                                         Basket ({items.length})
                                     </Button>
                                 </Link>
-                            )}
-                            <Link to="/profile">
-                                <Button ml={2}>Profile</Button>
-                            </Link>
-                        </>
-                    ) : (
-                        <>
+                            )
+                        }
                             <Link to="/signin">
                                 <Button colorScheme='pink'>Login</Button>
                             </Link>
                             <Link to="/signup"> 
-                                <Button colorScheme='gray' ml={2}>Register</Button>
+                                <Button colorScheme='gray'>Register</Button>
+                            </Link>
+                            
+                        </>
+                    )
+                }
+                {
+                    loggedIn && (
+                        <>
+                              <Link to="/profile">
+                                <Button>Profile</Button>
                             </Link>
                         </>
                     )
