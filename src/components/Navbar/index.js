@@ -23,17 +23,9 @@ const Navbar = () => {
             </div>
             <div className={styles.right}>
                 {
-                    loggedIn && (
+                    !loggedIn && (
                         <>
-                        {
-                            items.length > 0 && (
-                                <Link to ="/basket">
-                                    <Button colorScheme="pink" variant="outline">
-                                        Basket ({items.length})
-                                    </Button>
-                                </Link>
-                            )
-                        }
+                       
                             <Link to="/signin">
                                 <Button colorScheme='pink'>Login</Button>
                             </Link>
@@ -47,6 +39,15 @@ const Navbar = () => {
                 {
                     loggedIn && (
                         <>
+                         {
+                            items.length > 0 && (
+                                <Link to ="/basket">
+                                    <Button colorScheme="pink" variant="outline">
+                                        Basket ({items.length})
+                                    </Button>
+                                </Link>
+                            )
+                        }
                               <Link to="/profile">
                                 <Button>Profile</Button>
                             </Link>
