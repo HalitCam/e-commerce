@@ -9,6 +9,7 @@ import ProductDetail from './pages/ProductDetail';
 import Profile from './pages/Profile'
 import ProtectedRoute from './pages/ProtectedRoute';
 import { useAuth } from './contexts/AuthContext';
+import Basket from './pages/Basket';
 
 
 
@@ -32,6 +33,7 @@ function App() {
               </ProtectedRoute>
             }
             />
+            <Route path='/basket' element={<Basket/>} />
 
 
           </Routes>
