@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useRef, useState} from 'react';
 import { useBasket } from '../../contexts/BasketContext';
-import { Alert, Image, Button, Box, Text } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
+import {
+    Alert,
+    Image,
+    Button,
+    Box,
+    Text,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,
+    Input,
+    FormLabel,
+    FormControl,
+    Textarea,
+} from '@chakra-ui/react';
+
 
 const Basket = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure(); // default from @chakra-ui 
+    const initialRef = useRef(null) // default from @chakra-ui 
+
+    const handleSubmitForm = async () => {
+        const itemIds = items.map((item) => item._id);
+        
+    }
+    const [address, setAddress] = useState("");
     const { items, removeFromBasket } = useBasket();
     const total = items.reduce((acc, obj) => acc + obj.price, 0) // reduce function dizinlerde toplama yapmamizi saglar !
 
@@ -31,7 +58,34 @@ const Basket = () => {
                     <Box mt="10" >
                         <Text fontSize="22" >Total: {total} Euro </Text>
                     </Box>
-                </>}
+                    <Button onClick={onOpen} mt="2" size="sm" colorScheme='green' > Order</Button>
+
+                    <Modal
+                        initialFocusRef={initialRef}
+                        isOpen={isOpen}
+                        onClose={onClose}
+                    >
+                        <ModalOverlay />
+                        <ModalContent>
+                            <ModalHeader>Order</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody pb={6}>
+                                <FormControl>
+                                    <FormLabel>Adress</FormLabel>
+                                    <Textarea type='adress' ref={initialRef} placeholder='Adress' value={address} onChange={(e)=>{setAddress(e.target.values)}} />
+                                </FormControl>
+                            </ModalBody>
+
+                            <ModalFooter>
+                                <Button colorScheme='blue' mr={3} onClick={handleSubmitForm}>
+                                    Save
+                                </Button>
+                                <Button onClick={onClose}>Cancel</Button>
+                            </ModalFooter>
+                        </ModalContent>
+                    </Modal>
+                </>
+            }
 
         </Box>
     );
