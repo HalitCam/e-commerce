@@ -1,6 +1,7 @@
-import React, { useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import { useBasket } from '../../contexts/BasketContext';
 import { Link } from "react-router-dom";
+import { postOrder } from '../../api';
 import {
     Alert,
     Image,
@@ -28,10 +29,20 @@ const Basket = () => {
 
     const handleSubmitForm = async () => {
         const itemIds = items.map((item) => item._id);
-        
+
+        const input = {
+            address,
+            items: JSON.stringify(itemIds),
+        }
+
+        await postOrder(input);
+        emptyBasket();
+        onClose();
+
+
     }
     const [address, setAddress] = useState("");
-    const { items, removeFromBasket } = useBasket();
+    const { items, removeFromBasket, emptyBasket } = useBasket();
     const total = items.reduce((acc, obj) => acc + obj.price, 0) // reduce function dizinlerde toplama yapmamizi saglar !
 
     return (
@@ -72,7 +83,7 @@ const Basket = () => {
                             <ModalBody pb={6}>
                                 <FormControl>
                                     <FormLabel>Adress</FormLabel>
-                                    <Textarea type='adress' ref={initialRef} placeholder='Adress' value={address} onChange={(e)=>{setAddress(e.target.values)}} />
+                                    <Textarea ref={initialRef} placeholder='Adress' value={address} onChange={(e) => setAddress(e.target.value)} />
                                 </FormControl>
                             </ModalBody>
 
