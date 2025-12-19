@@ -21,6 +21,7 @@ const Signin = () => {
                 const loginResponse = await fetchLogin({
                     email: values.email,
                     password: values.password,
+                    passwordConfirm: values.password
                 })
                 login(loginResponse);
                 navigate("/profile");

@@ -11,6 +11,7 @@ import ProtectedRoute from './pages/ProtectedRoute';
 import { useAuth } from './contexts/AuthContext';
 import Basket from './pages/Basket';
 import Error404 from './pages/Error404';
+import Admin from './pages/Admin';
 
 
 
@@ -35,6 +36,7 @@ function App() {
             }
             />
             <Route path='/basket' element={<Basket/>} />
+            <Route path='/admin' element={<Admin/>} />
             <Route path="*" element={<Error404/>} />
 
 
