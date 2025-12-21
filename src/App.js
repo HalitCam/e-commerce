@@ -16,7 +16,9 @@ import Admin from './pages/Admin';
 
 
 function App() {
-  const {loggedIn} = useAuth(); 
+  const {loggedIn, user} = useAuth(); 
+  const admin = user?.role === 'admin';
+
   return (
     <Router>
       <div>
@@ -36,7 +38,14 @@ function App() {
             }
             />
             <Route path='/basket' element={<Basket/>} />
-            <Route path='/admin' element={<Admin/>} />
+
+            <Route path="/admin/*" element={
+              <ProtectedRoute path="/admin" isAuthenticated={loggedIn} adminRequired={true} admin={admin} >
+                <Admin />
+              </ProtectedRoute>
+            }
+            />
+            
             <Route path="*" element={<Error404/>} />
 
 

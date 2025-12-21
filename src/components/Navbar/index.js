@@ -51,7 +51,7 @@ const Navbar = () => {
                         {
                             user?.role === 'admin' && (
                                 <Link to="/admin">
-                                    <Button colorScheme="pink" variant="outline">
+                                    <Button colorScheme="pink" variant="outline" mr="3" >
                                         Admin
                                     </Button>
                                 </Link>
