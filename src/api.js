@@ -87,6 +87,13 @@ export const postOrder = async (input) => {
 	return data;
 }
 
+export const getOrder = async() => {
+	const {data}= await axios.get(
+		`${process.env.REACT_APP_BASE_ENDPOINT}/admin/orders`
+	)
+	return data;
+}
+
 
 
 
