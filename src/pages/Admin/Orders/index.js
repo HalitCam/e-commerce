@@ -18,24 +18,24 @@ const Orders = () => {
     console.log(total)
     return (
         <div>
-            <Text fontSize="2xl" display="flex" justifyContent="center" p="5">Orders</Text>
+            <Text fontSize="2xl" display="flex"  justifyContent="center" p="5">Orders</Text>
             <Table variant="simple">
                 <TableCaption>The orders of the customers in germany is being showed </TableCaption>
                 <Thead>
                     <Tr>
                         <Th>Customers ID</Th>
                         <Th>Adress</Th>
-                        <Th>Number of orders</Th>
+                        <Th isNumeric>Items</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
                     {
-                        data.map((customer) => (
-                            <Tr key={customer._id}>
-                                {console.log(customer)}
-                                <Td>{customer._id}</Td>
-                                <Td>{customer.adress}</Td>
-                                <Td>{customer.items.length}</Td>
+                        data.map((data) => (
+                            <Tr key={data._id}>
+                                {console.log(data)}
+                                <Td>{data.user.email}</Td>
+                                <Td>{data.adress}</Td>
+                                <Td isNumeric>{data.items.length}</Td>
                             </Tr>
                         ))
                     }
@@ -45,7 +45,7 @@ const Orders = () => {
                         <Tr>
                             <Th>{`Total Customers: ${data.length}`}</Th>
                             <Th>{data.length !== 0 ? "Diffirent Addresses" : "No Addresses to send"}</Th>
-                            <Th>{`Total products sold in orders: ${total} `}</Th>
+                            <Th isNumeric>{`Total Items: ${total} `}</Th>
                         </Tr>
                     }
                 </Tfoot>
