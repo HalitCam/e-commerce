@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "react-query"; // Server d
 import { fetchProductList, deleteProduct } from '../../../api';
 
 import { Link } from "react-router-dom";
-import { Text } from "@chakra-ui/react";
+import { Text, Button, Flex} from "@chakra-ui/react";
 import { Popconfirm, Table } from "antd"; // This UI Ant Design is besser at Table production than chakra-ui
 import moment from "moment";
 
@@ -94,7 +94,12 @@ const Products = () => {
 
     return (
         <div>
-            <Text fontSize="2xl">Products</Text>
+            <Flex justifyContent="space-between" mr="10" >
+                <Text fontSize="2xl">Products</Text>
+                <Link to="new_product">
+                    <Button>Add a new product</Button>
+                </Link>
+            </Flex>
 
             <Table columns={columns} dataSource={dataSource} />
         </div>

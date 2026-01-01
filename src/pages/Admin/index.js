@@ -7,6 +7,7 @@ import Home from './Home';
 import Orders from './Orders';
 import Products from './Products';
 import ProductDetail from './ProductDetail';
+import NewProduct from './NewProduct';
 
 const Admin = () => {
 
@@ -39,6 +40,7 @@ const Admin = () => {
                     <Route path={'orders'} element={<Orders/>} />
                     <Route path={'products'} element={<Products/>} />
                     <Route path={'products/:product_id'} element={<ProductDetail/>} />
+                    <Route path={'products/new_product'} element={<NewProduct/>}/>
 
                 </Routes>
             </Box>
