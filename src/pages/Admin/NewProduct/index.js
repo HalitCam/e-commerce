@@ -14,10 +14,7 @@ const NewProduct = () => {
             photos: [],
         },
         validationSchema: validationNew,
-        onSubmit: (values) => {() => (postProduct(values))
-    console.log("price", values.price.typeOf())
-        }
-    });
+        onSubmit: postProduct })
 
     return (
         <div>
@@ -46,7 +43,7 @@ const NewProduct = () => {
                     </FormControl>
                     <Box style={{ display: "flex", justifyContent: "center" }}>
                         <Button type="reset" colorScheme='red' mr="5">Reset</Button>
-                        <Button type="submit">Add a new product</Button>
+                        <Button type="submit">Save</Button>
                     </Box>
                 </form>
 

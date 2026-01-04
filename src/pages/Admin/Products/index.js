@@ -94,7 +94,7 @@ const Products = () => {
 
     return (
         <div>
-            <Flex justifyContent="space-between" mr="10" >
+            <Flex justifyContent="space-between" alignItems="center" mr="10" >
                 <Text fontSize="2xl">Products</Text>
                 <Link to="new_product">
                     <Button>Add a new product</Button>
