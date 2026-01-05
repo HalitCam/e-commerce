@@ -3,9 +3,16 @@ import { FieldArray, useFormik } from "formik";
 import { Box, Text, FormControl, FormLabel, Input, Textarea, Button } from "@chakra-ui/react";
 import validationNew from './validation';
 import { postProduct } from '../../../api';
+import { useMutation, useQueryClient } from 'react-query';
+import{message} from "antd";
 
 
 const NewProduct = () => {
+    const queryClient = useQueryClient();
+    const newProductMutation = useMutation(postProduct, {
+        onSuccess: () => queryClient.invalidateQueries("admin:products"),
+    })
+
     const formik = useFormik({
         initialValues: {
             title: "",
@@ -14,7 +21,24 @@ const NewProduct = () => {
             photos: [],
         },
         validationSchema: validationNew,
-        onSubmit: postProduct })
+        onSubmit: async (values, bag) =>{
+            console.log(formik.values);
+            message.loading({content : "Loading...", key: "product_new"});
+            newProductMutation.mutate(values, {
+                onSuccess: () =>{
+                    console.log("success");
+                    message.success({
+                        content:"The product successfully updated",
+                        key:"product_new",
+                        duration:2,
+                    })
+
+                }
+            })
+        }
+    })
+    const values = {...values, "price":`${JSON.stringify(formik.values.price)}`}
+    console.log(values)
 
     return (
         <div>
@@ -28,18 +52,18 @@ const NewProduct = () => {
                     </FormControl>
                     <FormControl mt="5">
                         <FormLabel>Description</FormLabel>
-                        <Textarea name='description' disabled={formik.isSubmitting} value={formik.values.description} width="8xl" onChange={formik.handleChange} onBlur ={formik.handleBlur} isInvalid={formik.touched.description && formik.errors.description}></Textarea>
+                        <Textarea name='description' disabled={formik.isSubmitting} value={formik.values.description} width="8xl" onChange={formik.handleChange} onBlur={formik.handleBlur} isInvalid={formik.touched.description && formik.errors.description}></Textarea>
                         {formik.touched.description && formik.errors.description && <Text color="red.400">{formik.errors.description}</Text>}
                     </FormControl>
                     <FormControl my="5">
                         <FormLabel>Price</FormLabel>
-                        <Input name='price' disabled={formik.isSubmitting} type='number' width="8xl" value={formik.values.price} onChange={formik.handleChange} onBlur={formik.handleBlur} isInvalid={formik.touched.price && formik.errors.price} />
+                        <Input name='price' disabled={formik.isSubmitting} type='string' width="8xl" value={formik.values.price} onChange={formik.handleChange} onBlur={formik.handleBlur} isInvalid={formik.touched.price && formik.errors.price} />
                         {formik.touched.price && formik.errors.price && <Text color="red.400">{formik.errors.price}</Text>}
                     </FormControl>
                     <FormControl>
                         <FormLabel>Photos</FormLabel>
 
-                        <Button type="button" handleSubmit={()=>(console.log("added"))}>Add a photo</Button>
+                        <Button type="button" handleSubmit={() => (console.log("added"))}>Add a photo</Button>
                     </FormControl>
                     <Box style={{ display: "flex", justifyContent: "center" }}>
                         <Button type="reset" colorScheme='red' mr="5">Reset</Button>
