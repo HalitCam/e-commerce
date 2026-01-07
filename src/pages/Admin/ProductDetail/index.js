@@ -116,7 +116,7 @@ const ProductDetail = () => {
                                                             />
                                                             <Button ml="4" type='button' color='red' onClick={() => arrayHelpers.remove(index)}>
                                                                 Remove
-                                                            </Button>
+                                                            </Button>s
                                                         </div>
                                                     ))
                                                 }
@@ -137,7 +137,7 @@ const ProductDetail = () => {
 
 
         </div>
-    );
+    );  
 }
 
 export default ProductDetail;

@@ -4,7 +4,7 @@ import { Box, Text, FormControl, FormLabel, Input, Textarea, Button } from "@cha
 import validationNew from './validation';
 import { postProduct } from '../../../api';
 import { useMutation, useQueryClient } from 'react-query';
-import{message} from "antd";
+import { message } from "antd";
 
 
 const NewProduct = () => {
@@ -18,27 +18,27 @@ const NewProduct = () => {
             title: "",
             description: "",
             price: "",
-            photos: [],
+            photos: [""],
         },
         validationSchema: validationNew,
-        onSubmit: async (values, bag) =>{
+        onSubmit: async (values, bag) => {
             console.log(formik.values);
-            message.loading({content : "Loading...", key: "product_new"});
+            message.loading({ content: "Loading...", key: "product_new" });
             newProductMutation.mutate(values, {
-                onSuccess: () =>{
+                onSuccess: () => {
                     console.log("success");
                     message.success({
-                        content:"The product successfully updated",
-                        key:"product_new",
-                        duration:2,
+                        content: "The product successfully updated",
+                        key: "product_new",
+                        duration: 2,
                     })
 
                 }
             })
         }
     })
-    const values = {...values, "price":`${JSON.stringify(formik.values.price)}`}
-    console.log(values)
+    // const lastValues = {...formik.values, "photos":`${df}`}}
+
 
     return (
         <div>
@@ -62,13 +62,57 @@ const NewProduct = () => {
                     </FormControl>
                     <FormControl>
                         <FormLabel>Photos</FormLabel>
+                        <Box >
 
-                        <Button type="button" handleSubmit={() => (console.log("added"))}>Add a photo</Button>
+                            {
+                                formik.values.photos.map((photo, index) => (
+                                    <div>
+                                        {
+                                            <div key={index}>
+                                                <Input name={`photos.${index}`} value={photo} onChange={(e) => {
+                                                    const newPhotos = [...formik.values.photos];
+                                                    newPhotos[index] = e.target.value;
+                                                    formik.setFieldValue("photos", newPhotos);
+                                                }} />
+                                                <Button
+                                                    ml="2"
+                                                    type="button"
+                                                    colorScheme="red"
+                                                    onClick={() => {
+                                                        const newPhotos = formik.values.photos.filter(
+                                                            (_, i) => i !== index
+                                                        );
+                                                        formik.setFieldValue("photos", newPhotos);
+                                                    }}
+                                                >
+                                                    Remove
+                                                </Button>
+                                            </div>
+
+                                        }
+                                        <Button
+                                            mt="3"
+                                            type="button"
+                                            onClick={() =>
+                                                formik.setFieldValue("photos", [...formik.values.photos, ""])
+                                            }
+                                        >
+                                            Add a photo
+                                        </Button>
+
+                                    </div>
+                                ))
+
+                            }
+
+                            <Box style={{ display: "flex", justifyContent: "center" }}>
+                                <Button type="button"  colorScheme='red' mr="5" onClick={formik.handleReset}>Reset</Button>
+                                <Button type="submit">Save</Button>
+                            </Box>
+                        </Box >
                     </FormControl>
-                    <Box style={{ display: "flex", justifyContent: "center" }}>
-                        <Button type="reset" colorScheme='red' mr="5">Reset</Button>
-                        <Button type="submit">Save</Button>
-                    </Box>
+
+
                 </form>
 
             </Box>
